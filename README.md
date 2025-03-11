@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -114,15 +113,12 @@
     let selectedPrintType = null;
 
     function selectOption(optionElement, nextQuestionId) {
-        // Убираем выделение у всех кнопок в текущем вопросе
         const parent = optionElement.parentElement;
         const options = parent.querySelectorAll('.option');
         options.forEach(opt => opt.classList.remove('selected'));
 
-        // Выделяем выбранную кнопку
         optionElement.classList.add('selected');
 
-        // Сохраняем выбранное значение
         if (parent.id === 'paperTypeOptions') {
             selectedPaperType = optionElement.getAttribute('data-value');
         } else if (parent.id === 'designerPaperOptionsList') {
@@ -131,7 +127,6 @@
             selectedPrintType = parseInt(optionElement.getAttribute('data-value'));
         }
 
-        // Показываем следующий вопрос
         if (nextQuestionId) {
             const nextQuestion = document.getElementById(nextQuestionId);
             if (nextQuestion) {
@@ -139,7 +134,6 @@
             }
         }
 
-        // Если это последний вопрос, обновляем стоимость и показываем форму
         if (nextQuestionId === 'result') {
             updatePrice();
             document.getElementById('result').classList.remove('hidden');
